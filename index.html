@@ -1,0 +1,391 @@
+
+<!--KC html-->
+<html >
+  <head>
+    <meta charset="UTF-8"><link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/png" href="https://3.top4top.net/p_1228f4tyx0.png" type="image/x-icon"/> 
+    <title>[-!-] KC [-!-]</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script language="javascript">document.write(unescape('•FUCK'));</script><meta http-equiv="Content-Type" content="text/html; charset=Windows-1254"> <link href="https://fonts.googleapis.com/css?family=Spirax" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Courier" rel="stylesheet" type="text/css"><link rel="icon" type="image/png" href="https://mir-s3-cdn-cf.behance.net/project_modules/disp/c45bc043215517.57e805e9d9111.gif"><meta property="og:image" content="https://mir-s3-cdn-cf.behance.net/project_modules/disp/c45bc043215517.57e805e9d9111.gif">
+    
+  <!-- //  Author=>King Cracker   //
+//DONT RECODE
+//©2019
+//BERNIAT RECODE W DOAIN MATI KESETRUM LISTRIK
+//RECODE SIH BOLEH ASAL ADA NICK GW :P
+// -->
+    <style>
+	@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v4/mrl8jkM18OlOQN8JLgasDxM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+}
+
+body {
+    font-family: Source Code Pro;
+    background:#000;
+    color: #00FF00;
+    margin:0;
+    font-size: 13px;
+}
+canvas {
+    position:absolute;
+    top:0;
+    left:0;
+}
+.bars-and-stuff{
+    left:66.6%;
+}
+
+.output-console {
+    position:fixed;
+    overflow:hidden;
+}
+p{margin:0}
+</style>
+  </head>
+  <body>    
+	<h1><center><font face="Spirax" color="#FFF300" size="12">Hacked By King Cracker</h1></center><br>
+	<h1><center><font face="courier" color="#FF00F9" size="5">[#] I AM SOLO PLAYER[#]<br>
+	<h4><center><font face="courier" color="#FFFFFF" size="5"><b>[#] GW PENDIAM BUKAN PECUNDANG[#]<BR>{•}BACOTAN SI PENDIAM{•}<br></b>	</h4>
+	 <b></b> </br></br><br></h1></center>
+	<font face="courier" color="#00FF1B" size="2"><script>
+	var commandStart = ['Hacking is fun ',
+                 'Downloading '],</script>
+    <canvas class='hacker-3d-shiz'></canvas>
+<canvas class='bars-and-stuff'></canvas>
+<div class="output-console"></div>
+    <script>
+	var canvas = document.querySelector(".hacker-3d-shiz"),
+    ctx = canvas.getContext("2d"),
+    canvasBars = document.querySelector(".bars-and-stuff"),
+    ctxBars = canvasBars.getContext("2d"),
+    outputConsole = document.querySelector(".output-console");
+
+canvas.width = (window.innerWidth/3)*2;
+canvas.height = window.innerHeight / 3;
+
+canvasBars.width = window.innerWidth/3;
+canvasBars.height = canvas.height;
+
+outputConsole.style.height = (window.innerHeight / 3) * 2 + 'px';
+outputConsole.style.top = window.innerHeight / 3 + 'px'
+
+
+/* Graphics stuff */
+function Square(z) {
+    this.width = canvas.width/2;
+    
+    if(canvas.height < 200){
+      this.width = 200;
+    };
+  
+    this.height = canvas.height;
+    z = z || 0;
+
+    this.points = [
+    new Point({
+        x: (canvas.width / 2) - this.width,
+        y: (canvas.height / 2) - this.height,
+        z: z
+    }),
+    new Point({
+        x: (canvas.width / 2) + this.width,
+        y: (canvas.height / 2) - this.height,
+        z: z
+    }),
+    new Point({
+        x: (canvas.width / 2) + this.width,
+        y: (canvas.height / 2) + this.height,
+        z: z
+    }),
+    new Point({
+        x: (canvas.width / 2) - this.width,
+        y: (canvas.height / 2) + this.height,
+        z: z
+    })];
+    this.dist = 0;
+}
+
+Square.prototype.update = function () {
+    for (var p = 0; p < this.points.length; p++) {
+        this.points[p].rotateZ(0.001);
+        this.points[p].z -= 3;
+        if (this.points[p].z < -300) {
+            this.points[p].z = 2700;
+        }
+        this.points[p].map2D();
+    }
+}
+
+Square.prototype.render = function () {
+    ctx.beginPath();
+    ctx.moveTo(this.points[0].xPos, this.points[0].yPos);
+    for (var p = 1; p < this.points.length; p++) {
+        if (this.points[p].z > -(focal - 50)) {
+            ctx.lineTo(this.points[p].xPos, this.points[p].yPos);
+        }
+    }
+
+    ctx.closePath();
+    ctx.stroke();
+
+    this.dist = this.points[this.points.length - 1].z;
+
+};
+
+function Point(pos) {
+    this.x = pos.x - canvas.width / 2 || 0;
+    this.y = pos.y - canvas.height / 2 || 0;
+    this.z = pos.z || 0;
+
+    this.cX = 0;
+    this.cY = 0;
+    this.cZ = 0;
+
+    this.xPos = 0;
+    this.yPos = 0;
+    this.map2D();
+}
+<!-- //Hacking On
+// -->
+Point.prototype.rotateZ = function (angleZ) {
+    var cosZ = Math.cos(angleZ),
+        sinZ = Math.sin(angleZ),
+        x1 = this.x * cosZ - this.y * sinZ,
+        y1 = this.y * cosZ + this.x * sinZ;
+
+    this.x = x1;
+    this.y = y1;
+}
+
+Point.prototype.map2D = function () {
+    var scaleX = focal / (focal + this.z + this.cZ),
+        scaleY = focal / (focal + this.z + this.cZ);
+
+    this.xPos = vpx + (this.cX + this.x) * scaleX;
+    this.yPos = vpy + (this.cY + this.y) * scaleY;
+};
+
+// Init graphics stuff
+var squares = [],
+    focal = canvas.width / 2,
+    vpx = canvas.width / 2,
+    vpy = canvas.height / 2,
+    barVals = [],
+    sineVal = 0;
+
+/* fake console stuff */
+var commandStart = ['Performing DNS Lookups for', 
+                'Searching ', 
+                'Analyzing ', 
+                'Estimating Approximate Location of ', 
+                'Compressing ', 
+                'Requesting Authorization From : ', 
+                'wget -a -t ', 
+                'tar -xzf ', 
+                'Entering Location ', 
+                'Compilation Started of ',
+                 'Downloading '],
+    commandParts = ['Data Structure', 
+                    'http://wwjd.com?au&2', 
+                    'Texture', 
+                    'TPS Reports', 
+                    ' .... Searching ... ', 
+                    'http://m.facebook.com/', 
+                    'http://ab.ret45-33/?timing=1ww'],
+    commandResponses = ['Authorizing ', 
+                 'Authorized...', 
+                 'Access Granted..', 
+                 'START HACKING....', 
+                 'Compression Complete.', 
+                 'Compilation of Data Structures Complete..', 
+                 'Entering Security Console...', 
+                 'Encryption Unsuccesful Attempting Retry...', 
+                 'Waiting for response...', 
+                 '....Searching...', 
+                 'Calculating Space Requirements '
+                ],
+    isProcessing = false,
+    processTime = 0,
+    lastProcess = 0;
+
+
+function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    squares.sort(function (a, b) {
+        return b.dist - a.dist;
+    });
+    for (var i = 0, len = squares.length; i < len; i++) {
+        squares[i].update();
+        squares[i].render();
+    }
+    
+    ctxBars.clearRect(0, 0, canvasBars.width, canvasBars.height);
+    
+    ctxBars.beginPath();
+    var y = canvasBars.height/6;
+    ctxBars.moveTo(0,y);
+    
+    for(i = 0; i < canvasBars.width; i++){
+        var ran = (Math.random()*20)-10;
+        if(Math.random() > 0.98){
+             ran = (Math.random()*50)-25   
+        }
+        ctxBars.lineTo(i, y + ran);
+    }
+    
+    ctxBars.stroke();
+    
+    for(i = 0; i < canvasBars.width; i+=20){
+        if(!barVals[i]){
+            barVals[i] = {
+                val : Math.random()*(canvasBars.height/2),
+                freq : 0.1,
+                sineVal : Math.random()*100
+            };
+        }
+        
+        barVals[i].sineVal+=barVals[i].freq;
+        barVals[i].val+=Math.sin(barVals[i].sineVal*Math.PI/2)*5;
+        ctxBars.fillRect(i+5,canvasBars.height,15,-barVals[i].val);
+    }
+    
+    requestAnimationFrame(render);
+}
+
+function consoleOutput(){
+    var textEl = document.createElement('p');
+    
+    if(isProcessing){
+        textEl = document.createElement('span');
+        textEl.textContent += Math.random() + " ";
+        if(Date.now() > lastProcess + processTime){
+            isProcessing = false;   
+        }
+    }else{
+        var commandType = ~~(Math.random()*4);
+        switch(commandType){
+            case 0:
+                textEl.textContent = commandStart[~~(Math.random()*commandStart.length)] + commandParts[~~(Math.random()*commandParts.length)];
+                break;
+            case 3: 
+                isProcessing = true;
+                processTime = ~~(Math.random()*5000);
+                lastProcess = Date.now();
+            default:
+                 textEl.textContent = commandResponses[~~(Math.random()*commandResponses.length)];
+            break;
+        }
+    }
+
+    outputConsole.scrollTop = outputConsole.scrollHeight;
+    outputConsole.appendChild(textEl);
+    
+    if (outputConsole.scrollHeight > window.innerHeight) {
+       var removeNodes = outputConsole.querySelectorAll('*');
+       for(var n = 0; n < ~~(removeNodes.length/3); n++){
+            outputConsole.removeChild(removeNodes[n]);
+        }
+    }
+    
+    setTimeout(consoleOutput, ~~(Math.random()*200));
+}
+
+
+setTimeout(function(){   
+      canvas.width = (window.innerWidth/3)*2;
+      canvas.height = window.innerHeight / 3;
+
+      canvasBars.width = window.innerWidth/3;
+      canvasBars.height = canvas.height;
+
+      outputConsole.style.height = (window.innerHeight / 3) * 2 + 'px';
+      outputConsole.style.top = window.innerHeight / 3 + 'px';
+  
+      focal = canvas.width / 2;
+      vpx = canvas.width / 2;
+      vpy = canvas.height / 2;
+
+      for (var i = 0; i < 15; i++) {
+          squares.push(new Square(-300 + (i * 200)));
+      }
+  
+      ctx.strokeStyle = ctxBars.strokeStyle = ctxBars.fillStyle = '#00FF00';
+  
+      render();
+      consoleOutput();
+}, 200);
+
+window.addEventListener('resize', function(){
+      canvas.width = (window.innerWidth/3)*2;
+      canvas.height = window.innerHeight / 3;
+
+      canvasBars.width = window.innerWidth/3;
+      canvasBars.height = canvas.height;
+
+      outputConsole.style.height = (window.innerHeight / 3) * 2 + 'px';
+      outputConsole.style.top = window.innerHeight / 3 + 'px';
+  
+      focal = canvas.width / 2;
+      vpx = canvas.width / 2;
+      vpy = canvas.height / 2;
+      ctx.strokeStyle = ctxBars.strokeStyle = ctxBars.fillStyle = '#00FF00';
+});
+	</script><br>
+<style>
+<style type="text/css">BODY{cursor:none}</style> </font> </div> </center> <font face="Shadows Into Light Two"> <center> <style type="text/css">BODY{cursor:none}</style><style type="text/css"> .blinking{ animation:blinkingText 0.8s infinite; } @keyframes blinkingText{ 0%{ color: #ff0027; } 20%{ color: #0c00ff; } 40%{ color: black; } 	60%{ color: #00e800; } 	80%{ color: red; } 100%{ color: #d0ff00; } } </style> <style> .blink { animation: blink-animation 1s steps(5, start) infinite; -webkit-animation: blink-animation 1s steps(5, start) infinite; } @keyframes blink-animation { to { visibility: hidden; } } @-webkit-keyframes blink-animation { to { visibility: hidden; } }
+   </style><script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        function clock() {
+          var now = new Date();
+          var secs = ('0' + now.getSeconds()).slice(-2);
+          var mins = ('0' + now.getMinutes()).slice(-2);
+          var hr = now.getHours();
+          var Time = hr + ":" + mins + ":" + secs;
+          document.getElementById("watch").innerHTML = Time;
+          requestAnimationFrame(clock);
+        }
+
+        requestAnimationFrame(clock);
+    });
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Ruluko');
+body {
+  background-color: #2c3e50;
+  font-family: 'Ruluko', sans-serif;
+}
+
+#watch {
+  color: #FFFFFF;
+  position: fixed;
+  z-index: 1;
+  height: 1.4em;
+  width: 3.8em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 10vw;
+	  -webkit-text-stroke: 3px #FFFFFF;
+}
+</style>
+<br><center><style type="text/css">#info-me {z-index: 1000;background:-moz-linear-gradient(top, #1F2326, #555);background: -webkit-gradient(linear, left top, left bottom, from(#1F2326), to(#555));box-shadow:-2px -2px 8px #000000, 2px 2px 20px #000000;-moz-box-shadow:-2px -2px 8px #000000, 2px 2px 20px #000000;-webkit-box-shadow:-2px -2px 8px #000000, 2px 2px 20px #000000;width:460px;position: fixed;top:150px;left:0;margin-left:-350px;border:1px solid #444;background-position:top right no-repeat;height:35px;font:11px Arial;color:#eee;border-top-right-radius:8px;border-bottom-right-radius:8px;-moz-border-radius-topright:8px;-moz-border-radius-bottomright:8px;-webkit-border-top-right-radius:8px;-webkit-border-bottom-right-radius:8px;}#info-teja{-o-transition: all 1s ease-in;-moz-transition: all 1s ease-in;-webkit-transition: all 1s ease-in;} #info-me:hover{width:400px;opacity:1.0;margin-left:0;}.meinbox {border:1px solid #444;width:320px; margin:0px 90px 10px 10px;background:#000;color:#ffffff; border-radius :20px; padding:5px 0;-moz-border-radius:20px; -webkit-border-radius:20px;-o-transition:all 2s ease-in;-moz-transition:all 2s ease-in;-webkit-transition:all 2s ease-in;opacity:0.2;}.meinbox:hover{opacity:1.0;box-shadow:1px 1px 15px #000; -moz-box-shadow: 1px 1px 15px #000; -webkit-box-shadow: 1px 1px 15px #000;background: #000;}.Tejainbox2 {margin:5px 10px;padding:0px 8px 10px;color:#FFFFFF;overflow:hidden;height:370px;}.me15 {border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;}.Teja2 ul.bom {margin: 0; padding: 0;}.Tejainbox2 li {margin-left:20px;}.Tejainbox2 li a {color: #FFFFF; line-height: 4px; font-size: 11px;font-weight: bold; text-decoration:none;}.Tejainbox2 li a:hover {color: red;text-shadow: 0 1px 1px #000;}.Tejainbox2 h2 { font: 18px Droid Serif;font-weight:bold;padding:0 8px;color: #fffff;text-shadow: 0px 1px 1px #ddd;border-bottom: 1px solid #000000;}.metouch {font-size:21px;font-weight:bold;font-family:Arial Narrow;float:right;margin: 3px 10px 0 0;-o-transition: all 0.5s ease-out;-moz-transition: all 0.5s ease-out;-webkit-transition: all 0.5s ease-out;text-decoration:blink;}.metouch:hover{-o-transform: scale(2) rotate(720deg) translate(0px);-moz-transform: scale(2) rotate(720deg) translate(0px);-webkit-transform: scale(2) rotate(720deg) translate(0px);color: #fffff;}</style> 
+                                         <div id="info-me"> 
+                                          <span class="metouch"><font size="5" color="white" style="text-shadow: 5px 5px 10px black;">Contact Me</font></span> 
+                                          <div class="meinbox"> 
+                                           <div class="meinbox2 me15"> 
+                                            <h2><font face="Courier" Size="5" color="#00FFE9"> +--King Cracker--+</h2><br>    <div id="watch"></div><br><center>
+<span class="blinking"><img src="https://1.bp.blogspot.com/-2O_aJmT0tFg/XSNCL3ubOLI/AAAAAAAAACM/ipDeX-4y4uwqveFuUaiWoLL8tj53OsW_QCLcBGAs/s1600/20190708_153036.png" height="200" width="200"></span><br><font color="#FF0049">______________________</font><br><a href="https://www.facebook.com/"><b><font face="Courier" Size="5" color="#FF00FA"><b>Facebook</a></font><br><a href="https://chat.whatsapp.com/ELTqcmUeoGj8QAvgC7jKpC"><b><font face="Courier" Size="5" color="#FF00FA">WhatsApp</a></font><br><a href="https://www.instagram.com/"><b><font face="Courier" Size="5" color="#FF00FA">Instagram</a></font>
+                                   <center><div class="bounce" ><h1 class="animated infinite bounceIn delay-5s slower"><font face="Pirata One" color="lime" size="40">I AM SOLO PLAYER</h1></div><br>         <font color="lime">______________________</font>
+<br><b><center><marquee behavior="right" scrollamount="10" style="border:1px solid;"widht="100%"><font face="Courier" size="5" color="white">MY GOD - MY FAMILY - MY FRIENDS - ALL CYBER INDONESIA</font><font face="courier" size="5"color="#F1FF00"> MY TEAM● INDENPENDENT CYBER TEAM ● PASEDULURAN CYBER TEAM  ● SMILE FACE ● SharkXploit ● INDONESIA DARKNET ● SMC45 ● INDONESIA DEEP WEB ● HANTU CYBER TEAM ● FRIENDS CYBER MUSLIM●DARKSEC TEAM ● DevilXploit Team ● AND ALL TEAM CYBER INDONESIA ● </font></marquee></font></b>
+<br><font face="Acme" color="#00FF34" size="4"> COPRYGHT©2019 </font></center>
+<span style="visibility: hidden"><iframe src="https://2.top4top.net/m_1273sylal0.mp3" frameborder="0" width="1" scrolling="no" height="1" name="stop" id="stop"></iframe></span>
+  </body>
+</html>
